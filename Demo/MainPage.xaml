@@ -1,7 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Demo.MainPage">
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             mc:Ignorable="d" x:Class="Demo.MainPage">
+   <CollectionView  ItemsSource="{Binding Items}"  ItemsLayout="{x:Static ListItemsLayout.VerticalList}">
+         
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                   <Grid Margin="5">
+                        
+                        <Label
+                            BackgroundColor="White"
+                            Grid.Row="0"
+                            TextColor="Red"
+                            Text="{Binding Title}"
+                            FontAttributes="Italic" />
+                         
+                    <CollectionView Grid.Row="1" 
+                                  ItemsSource="{Binding Children}" 
+                                  ItemsLayout="{x:Static ListItemsLayout.HorizontalList}">
+                        
+                        <CollectionView.ItemTemplate>
+                              <DataTemplate>
+                             <Grid Margin="5" >
+                                <Label
+                                     BackgroundColor="Blue"
+                                     Grid.Row="0"
+                                     TextColor="Red"
+                                     Text="{Binding Title}"
+                                    FontAttributes="Italic" />      
+                                 </Grid>
+                                 </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 </ContentPage>
